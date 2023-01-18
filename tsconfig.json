@@ -16,7 +16,6 @@
     "moduleResolution": "Node",
     "useDefineForClassFields": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
     "noImplicitAny": false,
   },
