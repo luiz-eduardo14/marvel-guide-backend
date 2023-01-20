@@ -8,12 +8,13 @@
   "author": "dudubr1441",
   "license": "MIT",
   "scripts": {
-    "start": "yarn tsx watch src/index.ts",
+    "start": "yarn tsx watch src/*",
     "build": "rm -rf node_modules && yarn install && yarn tsc"
   },
   "private": false,
   "dependencies": {
     "@types/node": "^18.11.18",
+    "axios": "^1.2.3",
     "md5": "^2.3.0",
     "tsx": "^3.12.2",
     "typescript": "^4.9.4"
