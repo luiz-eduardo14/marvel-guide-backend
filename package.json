@@ -1,7 +1,7 @@
 {
   "name": "marvel-guide-population",
   "version": "1.0.0",
-  "description": "project for population database with crawler",
+  "description": "project for population database with crawler and marvel API",
   "main": "index.ts",
   "repository": "git@github.com:luiz-eduardo14/marvel-guide-population.git",
   "type": "module",
@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn tsx watch src/*",
-    "build": "rm -rf node_modules && yarn install && yarn tsc"
+    "build": "yarn tsc"
   },
   "private": false,
   "dependencies": {
