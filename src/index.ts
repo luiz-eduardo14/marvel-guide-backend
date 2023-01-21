@@ -1,40 +1,39 @@
-import { Axios } from 'axios';
-import md5 from 'md5';
-import envFile from 'dotenv';
-import { writeFileSync, readFileSync } from 'fs';
-envFile.config();
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { Axios } from 'axios'
+import md5 from 'md5'
+import envFile from 'dotenv'
+import { writeFileSync, readFileSync } from 'fs'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
+import 'reflect-metadata'
+envFile.config()
+const _filename = fileURLToPath(import.meta.url)
+const _dirname = dirname(_filename)
 
 const marvelApi = new Axios({
-    baseURL:'http://gateway.marvel.com',
+  baseURL: 'http://gateway.marvel.com'
 
-});
+})
 
-const PRIVATE_KEY_MARVEL = process.env.PRIVATE_KEY_MARVEL;
-const PUBLIC_KEY_MARVEL = process.env.PUBLIC_KEY_MARVEL;
-const timestamp = Number(new Date());
+const PRIVATE_KEY_MARVEL = process.env.PRIVATE_KEY_MARVEL
+const PUBLIC_KEY_MARVEL = process.env.PUBLIC_KEY_MARVEL
+const timestamp = Number(new Date())
 
-const md5Hash = md5(timestamp + PRIVATE_KEY_MARVEL + PUBLIC_KEY_MARVEL);
+const md5Hash = md5(String(timestamp) + PRIVATE_KEY_MARVEL + PUBLIC_KEY_MARVEL)
 
-console.log(md5Hash);
+console.log(md5Hash)
 
-const jsonFile = JSON.parse(readFileSync(__dirname+'/test.json').toString());
+const jsonFile = JSON.parse(readFileSync(_dirname + '/test.json').toString())
 
-var countStories = 0;
+const countStories = 0
 
 jsonFile.forEach((hero) => {
-    countStories = countStories + hero.series.items.length;
-    console.log('hero: '+hero.name);
-    console.log(hero.series.items);    
-});
+  // countStories = countStories + hero.series.items.length;
+  console.log(hero?.thumbnail)
+})
 
-console.log(countStories);
+console.log(jsonFile.length)
 
-
+console.log()
 
 // (async () => {
 //     const urlRequest = `/v1/public/characters?ts=${timestamp}&apikey=${PUBLIC_KEY_MARVEL}&hash=${md5Hash}`;
