@@ -7,7 +7,8 @@ declare global {
       DATABASE_HOST: string;
       DATABASE_USERNAME: string;
       DATABASE_PASSWORD: string;
-      DATABASE_TYPE: 'postgres' | 'mysql'
+      DATABASE_TYPE: 'postgres' | 'mysql';
+      DATABASE_NAME: string;
     }
   }
 }
