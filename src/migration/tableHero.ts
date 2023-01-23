@@ -5,7 +5,7 @@ export default class CreateTableCharacter1674441062294 implements MigrationInter
     await queryRunner.query(`
         create table character(
             id serial,
-            id_origin int,
+            id_origin int unique,
             name text,
             description text,
             modified date,

@@ -5,23 +5,25 @@ import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 })
 export default class Character {
   @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
-  @PrimaryColumn()
-    id_origin: number;
-
-  @Column()
-    name: string;
-
-  @Column()
-    description: string;
+  @PrimaryColumn({
+    unique: true
+  })
+    id_origin!: number;
 
   @Column()
-    modified: Date;
+    name!: string;
 
   @Column()
-    imageURL: string;
+    description!: string;
 
   @Column()
-    resourceURI: string;
+    modified!: Date;
+
+  @Column()
+    imageURL!: string;
+
+  @Column()
+    resourceURI!: string;
 }
