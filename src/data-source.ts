@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
+import migrationList from './migration';
 import envFile from 'dotenv';
 envFile.config();
 
@@ -13,6 +14,6 @@ export const AppDataSource = new DataSource({
   synchronize: true,
   logging: false,
   entities: [],
-  migrations: [],
+  migrations: [...migrationList],
   subscribers: []
 });
