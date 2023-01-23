@@ -6,6 +6,7 @@ export default class CreateTableCharacter1674441062294 implements MigrationInter
         create table character(
             id serial,
             id_origin int,
+            name text,
             description text,
             modified date,
             imageURL text,
