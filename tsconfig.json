@@ -19,7 +19,8 @@
     "noEmit": true,
     "noImplicitAny": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata":true
+    "emitDecoratorMetadata":true,
+    "strictPropertyInitialization":false
   },
   "include": [
     "./src"
