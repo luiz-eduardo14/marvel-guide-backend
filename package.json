@@ -4,7 +4,6 @@
   "description": "project for population database with crawler and marvel API",
   "main": "index.ts",
   "repository": "git@github.com:luiz-eduardo14/marvel-guide-population.git",
-  "type": "module",
   "author": "dudubr1441",
   "license": "MIT",
   "scripts": {
@@ -20,7 +19,6 @@
     "install": "^0.13.0",
     "md5": "^2.3.0",
     "pg": "^8.8.0",
-    "reflect-metadata": "^0.1.13",
     "tsx": "^3.12.2",
     "typeorm": "^0.3.11",
     "typescript": "*"
@@ -33,6 +31,7 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "reflect-metadata": "^0.1.13"
   }
 }
