@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class TableHero implements MigrationInterface {
+export default class CreateTableCharacter1674441062294 implements MigrationInterface {
   async up (queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
         create table character(
