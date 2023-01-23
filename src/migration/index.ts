@@ -1,3 +1,3 @@
-import { TableHero } from './tableHero';
+import tableCharacter from './tableHero';
 
-export default [TableHero];
+export default [tableCharacter];
