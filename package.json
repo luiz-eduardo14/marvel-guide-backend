@@ -8,7 +8,7 @@
   "author": "dudubr1441",
   "license": "MIT",
   "scripts": {
-    "start": "yarn tsx watch src/*",
+    "population:characters": "yarn tsx watch src/characters/index.ts",
     "build": "yarn tsc",
     "migration": "yarn tsx src/migration/index.ts"
   },
