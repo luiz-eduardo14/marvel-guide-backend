@@ -6,8 +6,9 @@
   "repository": "git@github.com:luiz-eduardo14/marvel-guide-population.git",
   "author": "dudubr1441",
   "license": "MIT",
+  "type": "module",
   "scripts": {
-    "population:characters": "yarn tsx watch src/characters/index.ts",
+    "population:characters": "yarn tsc && node dist/characters/index.js",
     "build": "yarn tsc",
     "migration": "yarn tsx src/migration/index.ts"
   },
