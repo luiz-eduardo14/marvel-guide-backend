@@ -8,7 +8,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "population:characters": "yarn tsc && node dist/characters/index.js",
+    "population:characters": "yarn tsc && node dist/scripts/character.js",
     "build": "yarn tsc",
     "migration": "yarn tsx src/migration/index.ts"
   },
