@@ -1,3 +1,4 @@
-import Character from './character';
+import Character from './character.js';
+import SeriesSummary from './seriesSummary.js';
 
-export default [Character];
+export default [Character, SeriesSummary];

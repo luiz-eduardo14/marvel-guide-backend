@@ -1,3 +1,4 @@
-import tableCharacter from './tableHero';
+import tableCharacter from './tableHero.js';
+import tableSeriesSummary from './tableSeriesSummary.js';
 
-export default [tableCharacter];
+export default [tableCharacter, tableSeriesSummary];
