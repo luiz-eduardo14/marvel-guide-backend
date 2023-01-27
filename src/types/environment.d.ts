@@ -9,6 +9,7 @@ declare global {
       DATABASE_PASSWORD: string;
       DATABASE_TYPE: 'postgres' | 'mysql';
       DATABASE_NAME: string;
+      DATABASE_LOGGING: 'true' | 'false';
     }
   }
 }
