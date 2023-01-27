@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({
-  name: 'characters'
+  name: 'character'
 })
 export default class Character {
   @PrimaryGeneratedColumn()
