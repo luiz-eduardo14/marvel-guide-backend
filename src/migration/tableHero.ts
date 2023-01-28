@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export default class CreateTableCharacter1674441062294 implements MigrationInterface {
+export default class CreateTableCharacter1674441062295 implements MigrationInterface {
   async up (queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
         create table character(
@@ -8,15 +8,17 @@ export default class CreateTableCharacter1674441062294 implements MigrationInter
             id_origin int unique,
             name text,
             description text,
-            modified date,
-            imageURL text,
-            resourceURI text,
+            modified text,
+            image_url text,
+            resource_url text,
             primary key (id,id_origin)
         )
     `);
   }
 
   async down (queryRunner: QueryRunner): Promise<void> {
-    throw new Error('Method not implemented.');
+    await queryRunner.query(`
+        drop table character
+        `);
   }
 }
