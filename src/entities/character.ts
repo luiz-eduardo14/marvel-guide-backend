@@ -15,15 +15,27 @@ export default class Character {
   @Column()
     name!: string;
 
-  @Column()
-    description!: string;
+  @Column({
+    nullable: true,
+    type: 'text'
+  })
+    description!: string | null;
 
-  @Column()
+  @Column({
+    nullable: true
+  })
     modified!: Date;
 
-  @Column()
+  @Column({
+    nullable: true,
+    name: 'image_url'
+  }
+  )
     imageURL!: string;
 
-  @Column()
+  @Column({
+    nullable: false,
+    name: 'resource_url'
+  })
     resourceURI!: string;
 }

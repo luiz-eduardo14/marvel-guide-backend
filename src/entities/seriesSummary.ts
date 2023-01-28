@@ -11,7 +11,9 @@ export default class SeriesSummary {
   @PrimaryColumn()
     id_origin!: number;
 
-  @Column()
+  @Column({
+    name: 'resource_uri'
+  })
     resourceURI!: string;
 
   @Column()
