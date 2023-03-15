@@ -17,6 +17,7 @@
     "@types/node": "^18.11.18",
     "axios": "^1.2.3",
     "dotenv": "^16.0.3",
+    "html-to-text": "^9.0.4",
     "install": "^0.13.0",
     "md5": "^2.3.0",
     "pg": "^8.8.0",
@@ -32,7 +33,7 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
-    "ts-node": "^10.9.1",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^10.9.1"
   }
 }
