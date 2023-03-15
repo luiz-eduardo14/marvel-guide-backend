@@ -5,6 +5,7 @@ import { AppDataSource } from '../data-source.js';
 import { CharacterDataWrapper } from 'types/marvel/character/CharacterDataWrapper.js';
 import Character from '../entities/character.js';
 import SeriesSummary from '../entities/seriesSummary.js';
+import { convert } from 'html-to-text';
 envFile.config();
 
 (async () => {
@@ -57,7 +58,7 @@ envFile.config();
       await database.createQueryBuilder().insert().into(Character).values([{
         id_origin: character.id,
         name: character.name,
-        description: character.description !== '' ? character.description : null,
+        description: character.description !== '' ? convert(character.description) : null,
         modified: character.modified,
         imageURL: `${character?.thumbnail?.path ?? defaultThumbnail}.${character?.thumbnail?.extension ?? 'jpg'}`,
         resourceURI: character.resourceURI
