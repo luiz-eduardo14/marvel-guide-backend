@@ -1,8 +1,8 @@
 import { Axios } from 'axios';
 import md5 from 'md5';
 import envFile from 'dotenv';
-import { AppDataSource } from '../data-source.js';
-import { CharacterDataWrapper } from 'types/marvel/character/CharacterDataWrapper.js';
+import { AppDataSource } from '../database/data-source.js';
+import { CharacterDataWrapper } from '../types/marvel/character/CharacterDataWrapper.js';
 import Character from '../entities/character.js';
 import SeriesSummary from '../entities/seriesSummary.js';
 import { convert } from 'html-to-text';
@@ -55,11 +55,12 @@ envFile.config();
     const defaultThumbnail = 'https://terrigen-cdn-dev.marvel.com/content/prod/1x/default/explore-no-img';
 
     for (const character of data.results) {
+      // eslint-disable-next-line no-constant-condition, @typescript-eslint/strict-boolean-expressions
       await database.createQueryBuilder().insert().into(Character).values([{
         id_origin: character.id,
         name: character.name,
         description: character.description !== '' ? convert(character.description) : null,
-        modified: character.modified,
+        modified: !character.modified.toString().includes('NaN') ? character.modified : undefined,
         imageURL: `${character?.thumbnail?.path ?? defaultThumbnail}.${character?.thumbnail?.extension ?? 'jpg'}`,
         resourceURI: character.resourceURI
       }]).printSql().execute();

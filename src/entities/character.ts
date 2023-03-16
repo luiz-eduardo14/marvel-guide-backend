@@ -24,7 +24,7 @@ export default class Character {
   @Column({
     nullable: true
   })
-    modified!: Date;
+    modified?: Date;
 
   @Column({
     nullable: true,

@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import migrationList from './migration/index.js';
-import entityList from './entities/index.js';
+import entityList from '../entities/index.js';
 import envFile from 'dotenv';
 envFile.config();
 

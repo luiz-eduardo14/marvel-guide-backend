@@ -1,4 +1,4 @@
-import { CharacterContainer } from './DataContainer';
+import { CharacterContainer } from './DataContainer.js';
 
 export interface CharacterDataWrapper {
   code?: number;

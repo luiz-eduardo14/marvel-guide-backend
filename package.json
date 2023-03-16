@@ -9,12 +9,21 @@
   "type": "module",
   "scripts": {
     "population:characters": "yarn tsc && node dist/scripts/character.js",
-    "build": "yarn tsc",
-    "migration": "yarn tsx src/migration/index.ts"
+    "build": "nest build",
+    "migration": "yarn tsx src/migration/index.ts",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand"
   },
   "private": false,
   "dependencies": {
-    "@types/node": "^18.11.18",
     "axios": "^1.2.3",
     "dotenv": "^16.0.3",
     "html-to-text": "^9.0.4",
@@ -23,9 +32,20 @@
     "pg": "^8.8.0",
     "tsx": "^3.12.2",
     "typeorm": "^0.3.11",
-    "typescript": "*"
+    "@nestjs/common": "^9.0.0",
+    "@nestjs/core": "^9.0.0",
+    "@nestjs/platform-express": "^9.0.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.2.0"
   },
   "devDependencies": {
+    "@nestjs/cli": "^9.0.0",
+    "@nestjs/schematics": "^9.0.0",
+    "@nestjs/testing": "^9.0.0",
+    "@types/express": "^4.17.13",
+    "@types/jest": "29.2.4",
+    "@types/node": "18.11.18",
+    "@types/supertest": "^2.0.11",
     "@types/md5": "^2.3.2",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "eslint": "^8.0.1",
@@ -34,6 +54,11 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "reflect-metadata": "^0.1.13",
-    "ts-node": "^10.9.1"
+    "supertest": "^6.1.3",
+    "ts-node": "^10.9.1",
+    "ts-jest": "29.0.3",
+    "ts-loader": "^9.2.3",
+    "typescript": "^4.7.4",
+    "tsconfig-paths": "4.1.1"
   }
 }
