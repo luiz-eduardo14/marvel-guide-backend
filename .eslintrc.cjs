@@ -26,6 +26,7 @@ module.exports = {
     "semi": ["error", "always"],
     "@typescript-eslint/semi": "off",
     "@typescript-eslint/member-delimiter-style": "off",
-    "@typescript-eslint/no-empty-function": "off"
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-floating-promises": "off",
   },
 };
