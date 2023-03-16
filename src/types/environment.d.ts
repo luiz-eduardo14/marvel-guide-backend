@@ -10,6 +10,7 @@ declare global {
       DATABASE_TYPE: 'postgres' | 'mysql';
       DATABASE_NAME: string;
       DATABASE_LOGGING: 'true' | 'false';
+      PORT: string;
     }
   }
 }
