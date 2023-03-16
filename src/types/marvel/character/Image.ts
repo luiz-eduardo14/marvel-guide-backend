@@ -1,4 +1,4 @@
 export interface Image {
-  path: string
-  extension: string
+  path: string;
+  extension: string;
 }

@@ -1,41 +1,40 @@
 import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({
-  name: 'character'
+  name: 'character',
 })
 export default class Character {
   @PrimaryGeneratedColumn()
-    id!: number;
+  id!: number;
 
   @PrimaryColumn({
-    unique: true
+    unique: true,
   })
-    id_origin!: number;
+  id_origin!: number;
 
   @Column()
-    name!: string;
+  name!: string;
 
   @Column({
     nullable: true,
-    type: 'text'
+    type: 'text',
   })
-    description!: string | null;
-
-  @Column({
-    nullable: true
-  })
-    modified?: Date;
+  description!: string | null;
 
   @Column({
     nullable: true,
-    name: 'image_url'
-  }
-  )
-    imageURL!: string;
+  })
+  modified?: Date;
+
+  @Column({
+    nullable: true,
+    name: 'image_url',
+  })
+  imageURL!: string;
 
   @Column({
     nullable: false,
-    name: 'resource_url'
+    name: 'resource_url',
   })
-    resourceURI!: string;
+  resourceURI!: string;
 }

@@ -16,5 +16,5 @@ export const AppDataSource = new DataSource({
   logging: Boolean(process.env.DATABASE_LOGGING ?? 'false'),
   entities: [...entityList],
   migrations: [...migrationList],
-  subscribers: []
+  subscribers: [],
 });

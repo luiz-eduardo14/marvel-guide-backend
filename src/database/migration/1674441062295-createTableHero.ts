@@ -1,7 +1,9 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export default class CreateTableCharacter1674441062295 implements MigrationInterface {
-  async up (queryRunner: QueryRunner): Promise<void> {
+export default class CreateTableCharacter1674441062295
+  implements MigrationInterface
+{
+  async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
         create table character(
             id serial,
@@ -16,7 +18,7 @@ export default class CreateTableCharacter1674441062295 implements MigrationInter
     `);
   }
 
-  async down (queryRunner: QueryRunner): Promise<void> {
+  async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
         drop table character
         `);

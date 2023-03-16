@@ -1,4 +1,4 @@
 export interface Url {
-  type: string
-  url: string
+  type: string;
+  url: string;
 }
