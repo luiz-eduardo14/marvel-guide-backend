@@ -1,21 +1,14 @@
 import { Axios } from 'axios';
 import md5 from 'md5';
 import envFile from 'dotenv';
-import { AppDataSource } from '../database/data-source.js';
 import { CharacterDataWrapper } from '../types/marvel/character/CharacterDataWrapper.js';
 import Character from '../entities/character.js';
 import SeriesSummary from '../entities/seriesSummary.js';
 import { convert } from 'html-to-text';
+import { DataSource } from 'typeorm';
 envFile.config();
 
-(async () => {
-  const database = await AppDataSource.initialize();
-  const migratiosList = await database.runMigrations({ transaction: 'all' });
-
-  if (migratiosList.length > 0) console.log('ALL MIGRATIONS WERE EXECUTED');
-
-  console.log('Database connections established');
-
+export const PopulateCharactersScript = async (database: DataSource) => {
   const marvelApi = new Axios({
     baseURL: 'http://gateway.marvel.com',
   });
@@ -77,7 +70,7 @@ envFile.config();
             name: character.name,
             description:
               character.description !== ''
-                ? convert(character.description)
+                ? convert(character.description.replace(/\n/g, ' '))
                 : null,
             modified: !character.modified.toString().includes('NaN')
               ? character.modified
@@ -112,11 +105,4 @@ envFile.config();
       console.log(`\n${character.name} series inserted`);
     }
   }
-})()
-  .then(() => {
-    console.log('Characters insert with success');
-  })
-  .catch((error: Error) => {
-    console.log(error?.message);
-    console.log('Error to insert characters');
-  });
+};
