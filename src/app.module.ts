@@ -5,6 +5,8 @@ import { AppService } from './app.service.js';
 import entityList from './entities/index.js';
 import migrationList from './database/migration/index.js';
 import envFile from 'dotenv';
+import { DataSource } from 'typeorm';
+import CustomModules from './modules/index.js';
 envFile.config();
 
 @Module({
@@ -20,9 +22,14 @@ envFile.config();
       logging: Boolean(process.env.DATABASE_LOGGING ?? 'false'),
       entities: entityList,
       migrations: migrationList,
+      autoLoadEntities: true,
     }),
+    ...CustomModules,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  // eslint-disable-next-line @typescript-eslint/prefer-readonly
+  constructor(private dataSource: DataSource) {}
+}
