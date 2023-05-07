@@ -15,13 +15,15 @@ export class CharacterService {
     private readonly characterRepository: Repository<CharacterEntity>,
   ) {}
 
+  private readonly urlException = 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg';
+
   async paginate(
     options: IPaginationOptions,
   ): Promise<Pagination<CharacterEntity>> {
     const queryBuilder = this.characterRepository.createQueryBuilder('c');
     queryBuilder.orderBy('c.name', 'ASC'); // Or whatever you need to do
     queryBuilder.where('c.description is not null');
-
+    queryBuilder.andWhere('c.image_url != :urlException', { urlException: this.urlException });
     return await paginate<CharacterEntity>(queryBuilder, options);
   }
 
