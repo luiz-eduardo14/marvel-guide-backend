@@ -7,7 +7,7 @@ import {
   Query,
 } from '@nestjs/common';
 import Character from 'src/entities/character.js';
-import { CharacterService } from './service/character.service.js';
+import { CharacterService } from './character.service.js';
 import { Pagination } from 'nestjs-typeorm-paginate';
 
 @Controller('character')

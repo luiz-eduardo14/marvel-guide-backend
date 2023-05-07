@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import CharacterEntity from '../../../entities/character.js';
+import CharacterEntity from '../../entities/character.js';
 import {
   IPaginationOptions,
   Pagination,
