@@ -4,8 +4,10 @@
 /* eslint-disable @typescript-eslint/promise-function-async */
 import { AppDataSource } from '../database/data-source.js';
 import envFile from 'dotenv';
-import { PopulateCharactersScript } from 'src/scripts/character.js';
+import { ScriptsRunners } from '../entities/scriptsRunners.js';
+import { PopulateCharactersScript } from '../scripts/character.js';
 import { DataSource } from 'typeorm';
+import { log } from 'console';
 envFile.config();
 
 const successExit = 0;
@@ -27,16 +29,31 @@ export function ScriptsRunnerDatabase(
       migratiosList.forEach((migration) => {
         console.log(`Migration ${migration.name} executed`);
       });
-      scriptObjectArray.forEach((script) =>
-        script
-          .script(database)
-          .then(() => {
-            console.log(`Script ${script.name} executed`);
-          })
-          .catch((error) => {
-            console.log(error);
-          }),
-      );
+      const isRunningScripts = await database
+        .createQueryBuilder(ScriptsRunners,'scriptsRunners')
+        .getMany();
+      const scripsWithoutRun = scriptObjectArray.filter(script => {
+        return !isRunningScripts.find(scriptRun => scriptRun.name === script.name);
+      });
+      for (const scriptObject of scripsWithoutRun) {
+        try {
+          await scriptObject.script(database);
+          await database.createQueryBuilder()
+                .insert()
+                .into(ScriptsRunners)
+                .values([
+                  {
+                    name: scriptObject.name,
+                    time: new Date(),
+                  }
+                ])
+                .printSql()
+                .execute();
+          console.log(`Script ${scriptObject.name} executed`);
+        } catch (error) {
+          console.log(error);
+        }
+      }
       process.exit(successExit);
     } catch (error) {
       reject(error);
@@ -51,4 +68,6 @@ const scrips = [
   },
 ];
 
-ScriptsRunnerDatabase(scrips);
+ScriptsRunnerDatabase(scrips).then(() => {
+  console.log('Scripts executed');
+});
