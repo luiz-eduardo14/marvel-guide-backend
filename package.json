@@ -8,7 +8,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "population:characters": "yarn tsc && node dist/scripts/character.js",
+    "population:scripts": "yarn tsc && node dist/src/utils/script.js",
     "build": "nest build",
     "migration": "yarn tsx src/migration/index.ts",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
