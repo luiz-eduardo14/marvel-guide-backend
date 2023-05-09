@@ -11,6 +11,7 @@ declare global {
       DATABASE_NAME: string;
       DATABASE_LOGGING: 'true' | 'false';
       PORT: string;
+      LIMIT_REQUEST: string;
     }
   }
 }
