@@ -3,6 +3,8 @@ import md5 from 'md5';
 import envFile from 'dotenv';
 import { CharacterDataWrapper } from '../types/marvel/character/CharacterDataWrapper.js';
 import Character from '../entities/character.js';
+import { RequestMarvel } from '../entities/requestMarvel.js';
+import { getCurrentDatabaseRequestMarvel, updateRequestMarvel } from '../utils/requestMarvelUtil.js';
 import SeriesSummary from '../entities/seriesSummary.js';
 import { convert } from 'html-to-text';
 import { DataSource } from 'typeorm';
@@ -21,12 +23,21 @@ export const PopulateCharactersScript = async (database: DataSource) => {
     String(timestamp) + PRIVATE_KEY_MARVEL + PUBLIC_KEY_MARVEL,
   );
 
+  let currentRequestMarvel = await getCurrentDatabaseRequestMarvel(database);
+
+  const repositoryRequestMarvel = database.getRepository(RequestMarvel);
+
   const urlRequest = `/v1/public/characters?ts=${timestamp}&apikey=${PUBLIC_KEY_MARVEL}&hash=${md5Hash}`;
 
   const { data: json } = await marvelApi.get(
     `${urlRequest}&limit=1&offset=0`,
     {},
   );
+
+  currentRequestMarvel = await updateRequestMarvel({
+    repository: repositoryRequestMarvel,
+    requestMarvel: currentRequestMarvel,
+  });
 
   const resultRequestCharacter: CharacterDataWrapper = JSON.parse(
     json as string,
@@ -45,6 +56,10 @@ export const PopulateCharactersScript = async (database: DataSource) => {
       `${urlRequest}&limit=100&offset=${offset}`,
       {},
     );
+    currentRequestMarvel = await updateRequestMarvel({
+      repository: repositoryRequestMarvel,
+      requestMarvel: currentRequestMarvel,
+    });
     const { data }: CharacterDataWrapper = JSON.parse(json);
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!data) {
@@ -83,6 +98,7 @@ export const PopulateCharactersScript = async (database: DataSource) => {
         ])
         .printSql()
         .execute();
+
       console.log(`\n${character.name} inserted`);
 
       if (character.series === undefined || character.series === null) continue;
