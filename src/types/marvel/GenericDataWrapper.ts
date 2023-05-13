@@ -1,9 +1,7 @@
-import { CharacterContainer } from './DataContainer.js';
-
-export interface CharacterDataWrapper {
+export interface GenericDataWrapper<T> {
   code?: number;
   status?: string;
-  data?: CharacterContainer;
+  data?: T;
   etag?: string;
   copyright?: string;
   attributionText?: string;
