@@ -1,20 +1,18 @@
-import { Axios } from 'axios';
 import md5 from 'md5';
 import envFile from 'dotenv';
-import { CharacterDataWrapper } from '../types/marvel/character/CharacterDataWrapper.js';
+import { GenericDataWrapper } from '../types/marvel/GenericDataWrapper.js';
 import Character from '../entities/character.js';
 import { RequestMarvel } from '../entities/requestMarvel.js';
 import { getCurrentDatabaseRequestMarvel, updateRequestMarvel } from '../utils/requestMarvelUtil.js';
 import SeriesSummary from '../entities/seriesSummary.js';
 import { convert } from 'html-to-text';
 import { DataSource } from 'typeorm';
+import { marvelApi } from '../utils/api/marvel.js';
+import { GenericDataContainer } from '../types/marvel/GenericDataContainer.js';
+import { Hero } from '../types/marvel/character/Hero.js';
 envFile.config();
 
 export const PopulateCharactersScript = async (database: DataSource) => {
-  const marvelApi = new Axios({
-    baseURL: 'http://gateway.marvel.com',
-  });
-
   const PRIVATE_KEY_MARVEL = process.env.PRIVATE_KEY_MARVEL;
   const PUBLIC_KEY_MARVEL = process.env.PUBLIC_KEY_MARVEL;
   const timestamp = Number(new Date());
@@ -23,11 +21,11 @@ export const PopulateCharactersScript = async (database: DataSource) => {
     String(timestamp) + PRIVATE_KEY_MARVEL + PUBLIC_KEY_MARVEL,
   );
 
+  const urlRequest = `/v1/public/characters?ts=${timestamp}&apikey=${PUBLIC_KEY_MARVEL}&hash=${md5Hash}`;
+
   let currentRequestMarvel = await getCurrentDatabaseRequestMarvel(database);
 
   const repositoryRequestMarvel = database.getRepository(RequestMarvel);
-
-  const urlRequest = `/v1/public/characters?ts=${timestamp}&apikey=${PUBLIC_KEY_MARVEL}&hash=${md5Hash}`;
 
   const { data: json } = await marvelApi.get(
     `${urlRequest}&limit=1&offset=0`,
@@ -39,7 +37,7 @@ export const PopulateCharactersScript = async (database: DataSource) => {
     requestMarvel: currentRequestMarvel,
   });
 
-  const resultRequestCharacter: CharacterDataWrapper = JSON.parse(
+  const resultRequestCharacter: GenericDataWrapper<GenericDataContainer<Hero>> = JSON.parse(
     json as string,
   );
 
@@ -60,7 +58,7 @@ export const PopulateCharactersScript = async (database: DataSource) => {
       repository: repositoryRequestMarvel,
       requestMarvel: currentRequestMarvel,
     });
-    const { data }: CharacterDataWrapper = JSON.parse(json);
+    const { data }: GenericDataWrapper<GenericDataContainer<Hero>> = JSON.parse(json);
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!data) {
       throw new Error('Data not found');
