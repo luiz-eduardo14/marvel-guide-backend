@@ -7,7 +7,7 @@ import envFile from 'dotenv';
 import { ScriptsRunners } from '../entities/scriptsRunners.js';
 import { PopulateCharactersScript } from '../scripts/character.js';
 import { DataSource } from 'typeorm';
-import { log } from 'console';
+import { PopulateSeriesScript } from '../scripts/serie.js';
 envFile.config();
 
 const successExit = 0;
@@ -66,6 +66,10 @@ const scrips = [
     name: 'PopulateCharactersScript',
     script: PopulateCharactersScript,
   },
+  {
+    name: 'PopulateSeriesScript',
+    script: PopulateSeriesScript,
+  }
 ];
 
 ScriptsRunnerDatabase(scrips).then(() => {
