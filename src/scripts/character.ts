@@ -4,7 +4,7 @@ import { GenericDataWrapper } from '../types/marvel/GenericDataWrapper.js';
 import Character from '../entities/character.js';
 import { RequestMarvel } from '../entities/requestMarvel.js';
 import { getCurrentDatabaseRequestMarvel, updateRequestMarvel } from '../utils/requestMarvelUtil.js';
-import SeriesSummary from '../entities/seriesSummary.js';
+import { SummarySeries } from '../entities/summarySeries.js';
 import { convert } from 'html-to-text';
 import { DataSource } from 'typeorm';
 import { marvelApi } from '../utils/api/marvel.js';
@@ -104,13 +104,12 @@ export const PopulateCharactersScript = async (database: DataSource) => {
       await database
         .createQueryBuilder()
         .insert()
-        .into(SeriesSummary)
+        .into(SummarySeries)
         .values(
           character.series.items.map((item) => {
             return {
-              id_origin: character.id,
-              name: item.name,
-              resourceURI: item.resourceURI,
+              idCharacter: character.id,
+              idSerie: Number(item?.resourceURI?.split('/').pop()),
             };
           }),
         )
