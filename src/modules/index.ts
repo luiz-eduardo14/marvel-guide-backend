@@ -1,3 +1,4 @@
-import { CharacterModule } from './character/character.module.js';
+import { CharacterModule } from './character/character.module';
+import { SerieModule } from './serie/serie.module';
 
-export default [CharacterModule];
+export default [CharacterModule, SerieModule];
