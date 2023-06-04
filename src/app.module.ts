@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller.js';
-import { AppService } from './app.service.js';
-import entityList from './entities/index.js';
-import migrationList from './database/migration/index.js';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import entityList from './entities/index';
+import migrationList from './database/migration/index';
 import envFile from 'dotenv';
 import { DataSource } from 'typeorm';
-import CustomModules from './modules/index.js';
+import CustomModules from './modules/index';
 envFile.config();
 
 @Module({

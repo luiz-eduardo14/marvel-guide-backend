@@ -1,15 +1,15 @@
 import md5 from 'md5';
 import envFile from 'dotenv';
-import { GenericDataWrapper } from '../types/marvel/GenericDataWrapper.js';
-import Character from '../entities/character.js';
-import { RequestMarvel } from '../entities/requestMarvel.js';
-import { getCurrentDatabaseRequestMarvel, updateRequestMarvel } from '../utils/requestMarvelUtil.js';
-import { SummarySeries } from '../entities/summarySeries.js';
+import { GenericDataWrapper } from '../types/marvel/GenericDataWrapper';
+import Character from '../entities/character';
+import { RequestMarvel } from '../entities/requestMarvel';
+import { getCurrentDatabaseRequestMarvel, updateRequestMarvel } from '../utils/requestMarvelUtil';
+import { SummarySeries } from '../entities/summarySeries';
 import { convert } from 'html-to-text';
 import { DataSource } from 'typeorm';
-import { marvelApi } from '../utils/api/marvel.js';
-import { GenericDataContainer } from '../types/marvel/GenericDataContainer.js';
-import { Hero } from '../types/marvel/character/Hero.js';
+import { marvelApi } from '../utils/api/marvel';
+import { GenericDataContainer } from '../types/marvel/GenericDataContainer';
+import { Hero } from '../types/marvel/character/Hero';
 envFile.config();
 
 export const PopulateCharactersScript = async (database: DataSource) => {

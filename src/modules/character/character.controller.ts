@@ -6,8 +6,8 @@ import {
   ParseIntPipe,
   Query,
 } from '@nestjs/common';
-import Character from 'src/entities/character.js';
-import { CharacterService } from './character.service.js';
+import Character from 'src/entities/character';
+import { CharacterService } from './character.service';
 import { Pagination } from 'nestjs-typeorm-paginate';
 
 @Controller('character')

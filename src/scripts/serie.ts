@@ -1,14 +1,14 @@
 import md5 from "md5";
-import { Serie } from "../types/marvel/series/Serie.js";
-import {} from '../entities/index.js'
-import { marvelApi } from "../utils/api/marvel.js";
+import { Serie } from "../types/marvel/series/Serie";
+import {} from '../entities/index'
+import { marvelApi } from "../utils/api/marvel";
 import { DataSource } from "typeorm";
-import { GenericDataWrapper } from "../types/marvel/GenericDataWrapper.js";
-import { GenericDataContainer } from "../types/marvel/GenericDataContainer.js"
-import { getCurrentDatabaseRequestMarvel, updateRequestMarvel } from "../utils/requestMarvelUtil.js";
-import { RequestMarvel } from '../entities/requestMarvel.js'
+import { GenericDataWrapper } from "../types/marvel/GenericDataWrapper";
+import { GenericDataContainer } from "../types/marvel/GenericDataContainer"
+import { getCurrentDatabaseRequestMarvel, updateRequestMarvel } from "../utils/requestMarvelUtil";
+import { RequestMarvel } from '../entities/requestMarvel'
 import JsDom from 'jsdom';
-import { Serie as SerieEntity } from "../entities/serie.js";
+import { Serie as SerieEntity } from "../entities/serie";
 
 const getIssueDescriptionMarvel = async (url: string): Promise<string | undefined> => {
     const htmlMarvelString = await marvelApi.get(url);

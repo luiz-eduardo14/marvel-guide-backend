@@ -1,10 +1,10 @@
-import { ComicSummary } from '../ComicSummary.js';
-import { DataList } from '../DataList.js';
-import { EventSummary } from '../EventSummary.js';
-import { Image } from '../Image.js';
-import { SeriesSummary } from '../SeriesSummary.js';
-import { StorySummary } from '../StorySummary.js';
-import { Url } from '../Url.js';
+import { ComicSummary } from '../ComicSummary';
+import { DataList } from '../DataList';
+import { EventSummary } from '../EventSummary';
+import { Image } from '../Image';
+import { SeriesSummary } from '../SeriesSummary';
+import { StorySummary } from '../StorySummary';
+import { Url } from '../Url';
 
 export interface Hero {
   id: number;

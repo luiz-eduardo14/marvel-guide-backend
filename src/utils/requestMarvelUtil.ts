@@ -1,5 +1,5 @@
 import { DataSource, Repository } from 'typeorm';
-import { RequestMarvel } from '../entities/requestMarvel.js';
+import { RequestMarvel } from '../entities/requestMarvel';
 
 async function getCurrentDatabaseRequestMarvel(database: DataSource): Promise<RequestMarvel> {
     const marvelRepository = database.getRepository(RequestMarvel);

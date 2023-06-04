@@ -2,12 +2,12 @@
 /* eslint-disable no-new */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/promise-function-async */
-import { AppDataSource } from '../database/data-source.js';
+import { AppDataSource } from '../database/data-source';
 import envFile from 'dotenv';
-import { ScriptsRunners } from '../entities/scriptsRunners.js';
-import { PopulateCharactersScript } from '../scripts/character.js';
+import { ScriptsRunners } from '../entities/scriptsRunners';
+import { PopulateCharactersScript } from '../scripts/character';
 import { DataSource } from 'typeorm';
-import { PopulateSeriesScript } from '../scripts/serie.js';
+import { PopulateSeriesScript } from '../scripts/serie';
 envFile.config();
 
 const successExit = 0;
