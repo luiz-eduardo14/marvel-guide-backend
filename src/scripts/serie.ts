@@ -10,13 +10,17 @@ import { RequestMarvel } from '../entities/requestMarvel'
 import JsDom from 'jsdom';
 import { Serie as SerieEntity } from "../entities/serie";
 
-const getIssueDescriptionMarvel = async (url: string): Promise<string | undefined> => {
-    const htmlMarvelString = await marvelApi.get(url);
-    const htmlMarvel = new JsDom.JSDOM(htmlMarvelString.data);
-    const documentHTML = htmlMarvel.window.document;
-    const description = documentHTML.querySelector('.featured-item-desc');
-    const descriptionText = description?.lastElementChild?.textContent?.trim();
-    return descriptionText;
+const getIssueDescriptionMarvel = async (url: string): Promise<string | null> => {
+    try {
+      const htmlMarvelString = await marvelApi.get(url);
+      const htmlMarvel = new JsDom.JSDOM(htmlMarvelString.data);
+      const documentHTML = htmlMarvel.window.document;
+      const description = documentHTML.querySelector('.featured-item-desc');
+      const descriptionText = description?.lastElementChild?.textContent?.trim();
+      return descriptionText;
+    } catch (error) {
+      return null;
+    }
 };
 
 
