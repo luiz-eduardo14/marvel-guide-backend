@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Serie } from './serie';
+import Character from './character';
 
 @Entity({
   name: 'summary_serie',
@@ -16,4 +18,19 @@ export class SummarySeries {
     name: 'id_serie'
   })
   idSerie!: number;
+
+  @OneToOne(() => Serie)
+  @JoinColumn({
+    name: 'id_serie',
+    referencedColumnName: 'idOrigin',
+  })
+  serie!: Serie;
+
+  @OneToOne(() => Character)
+  @JoinColumn({
+    name: 'id_character',
+    referencedColumnName: 'id_origin',
+  })
+  character!: Character;
+  
 }
