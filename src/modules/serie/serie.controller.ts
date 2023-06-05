@@ -1,6 +1,7 @@
 import { Controller, Get, Param, ParseIntPipe } from "@nestjs/common";
 import { Serie } from "../../entities/serie";
-import { SerieService } from "./serie.service";
+import { SerieCharacterType, SerieService } from "./serie.service";
+import { SummarySeries } from "src/entities/summarySeries";
 
 @Controller('serie')
 export class SerieController {
@@ -10,10 +11,10 @@ export class SerieController {
     return await this.serieService.findAll();
   }
 
-  @Get('/serie/:id')
+  @Get('character/:id')
   async getSerieByCharacter(
     @Param('id', ParseIntPipe) id: number,
-  ): Promise<Serie[]> {
-    return await this.serieService.findAll();
+  ): Promise<SerieCharacterType[]> {
+    return await this.serieService.getCharacterSeriesById(id);
   }
 }
